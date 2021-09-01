@@ -8,7 +8,6 @@ repositories {
 
 dependencies {
     implementation 'com.gingerpayments:ginger-java:2.1.1'
-    implementation 'org.json:json:20201115'
 }
 
 task runIdealPayment (type: JavaExec) {
