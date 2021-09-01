@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.gingerpayments:ginger-java:2.1.1'
+    implementation 'org.json:json:20201115'
+}
+
+task runIdealPayment (type: JavaExec) {
+    inputs.property 'GINGER_ENDPOINT', System.getenv().get("GINGER_ENDPOINT")
+    inputs.property 'GINGER_API_KEY', System.getenv().get("GINGER_API_KEY")
+
+    mainClass = 'com.gingerpayments.example.IdealPayment'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runPaymentWithMethodSelection (type: JavaExec) {
+    inputs.property 'GINGER_ENDPOINT', System.getenv().get("GINGER_ENDPOINT")
+    inputs.property 'GINGER_API_KEY', System.getenv().get("GINGER_API_KEY")
+
+    mainClass = 'com.gingerpayments.example.PaymentWithMethodSelection'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+defaultTasks 'runIdealPayment', 'runPaymentWithMethodSelection'
